@@ -1,7 +1,15 @@
 package sg.edu.nus.iss.vttp5a_day16l.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import sg.edu.nus.iss.vttp5a_day16l.constant.RedisConstant;
 
 @Configuration
 public class RedisConfig {
@@ -19,5 +27,33 @@ public class RedisConfig {
     @Value("${spring.data.redis.password}")
     private String redisPassword;
 
-    
+
+    // slide 18
+    @Bean
+    public JedisConnectionFactory jedisConnectionFactory() {
+        RedisStandaloneConfiguration rsc = new RedisStandaloneConfiguration();
+        rsc.setHostName(redisHost);
+        rsc.setPort(redisPort);
+
+        if(redisUsername.trim().length() > 0) {
+            rsc.setUsername(redisUsername);
+            rsc.setPassword(redisPassword);
+        }
+
+        JedisClientConfiguration jcc = JedisClientConfiguration.builder().build();
+        JedisConnectionFactory jcf = new JedisConnectionFactory(rsc, jcc);
+        jcf.afterPropertiesSet();
+
+        return jcf;
+    }
+
+    @Bean(RedisConstant.REDISTEMPLATE)
+    public RedisTemplate<String, String> redisObjectTemplate01() {
+        RedisTemplate<String, String> template = new RedisTemplate<>();
+        template.setConnectionFactory(jedisConnectionFactory());
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new StringRedisSerializer());
+
+        return template;
+    }
 }
