@@ -1,10 +1,27 @@
 package sg.edu.nus.iss.vttp5a_day16l.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class Student {
     
-    private Integer id;
+        @NotBlank(message = "ID is mandatory")
+        @Pattern(regexp = "^\\d{3}$", message = "ID must be exactly 3 digits long")
+    private String id;
+
+        @NotBlank(message = "Name is mandatory ") 
+        @Size(min = 3, max = 64, message = "Name must be between 3 and 64 characters")
+        @Pattern(regexp = "^[a-zA-Z@\\-\\s]*$", message = "Name can only contain alphabets, spaces, '@', or '-'")
     private String fullName;
+
+        @NotBlank(message = "Email is mandatory")
+        @Email(message = "Please enter a valid email address")
     private String email;
+
+        @NotBlank(message = "Phone number is mandatory")
+        @Pattern(regexp = "^\\d{7,}$", message = "Phone number can only contain digits, must be at least 7 digits long")
     private String phone;
 
 
@@ -12,7 +29,7 @@ public class Student {
 
     }
 
-    public Student(Integer id, String fullName, String email, String phone){
+    public Student(String id, String fullName, String email, String phone){
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -26,11 +43,11 @@ public class Student {
     }
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

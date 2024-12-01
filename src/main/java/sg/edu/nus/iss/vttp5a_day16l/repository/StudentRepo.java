@@ -27,7 +27,7 @@ public class StudentRepo {
 
         for (String student : studentListString) {
             String[] data = student.split(",");
-            Student s = new Student(Integer.parseInt(data[0]), data[1], data[2], data[3]);
+            Student s = new Student(data[0], data[1], data[2], data[3]);
             studentList.add(s);
         }
 
@@ -43,7 +43,7 @@ public class StudentRepo {
 
 
     // find student by ID function
-    public Student findByID(String key, Integer id) {
+    public Student findByID(String key, String id) {
         List<Student> studentList = getStudentList(key);
         for (Student student : studentList) {
             if (student.getId().equals(id)) {

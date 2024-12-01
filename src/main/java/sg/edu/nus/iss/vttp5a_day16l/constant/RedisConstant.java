@@ -4,5 +4,5 @@ public class RedisConstant {
     
     public static final String REDISTEMPLATE = "template01";
 
-    public static final String STUDENTKEY = "students";
+    public static final String STUDENTKEY = "students16L";
 }
