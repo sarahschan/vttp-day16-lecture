@@ -52,7 +52,7 @@ public class StudentRestController {
     }
 
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<String> create(@RequestBody String entity) {
         
         // using Json-P to convert Json string to student object
