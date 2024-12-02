@@ -18,3 +18,10 @@
             "phone": "88889999"
         }
 - StudentRestService class is a demonstration, does not have functionality in this project
+
+
+
+## Countries (/api/countries)
+- Using API datasource: "https://api.first.org/data/v1/countries", which provides country code, name, and region
+- Extract country code and name from API response to create a country object
+- Display list of country obkects on our page, formatted as a JSON array of JSON objects
