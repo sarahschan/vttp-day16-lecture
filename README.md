@@ -1,6 +1,6 @@
 # DAY 16 LECTURE
 
-## Student (/students)
+## Students (/students)
 - Creating "regular" webapp to create entries of student details
 - Connects to local or railway-hosted Redis database
 - Student details stored as Strings
@@ -17,3 +17,9 @@
             "phone": "88889999"
         }
 - StudentRestService class is a demonstration, does not have functionality in this project
+
+
+## Countries (/api/countries)
+- Using API datasource: "https://api.first.org/data/v1/countries", which provides country code, name, and region
+- Extract country code and name from the API response to create a country object
+- Display a list of country objects on our own page, formatted as a JSON array of JSON objects
